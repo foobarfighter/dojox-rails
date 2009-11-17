@@ -13,7 +13,7 @@ end
 task :build_dojox_rails => [:environment] do
   build_path = File.join(DOJO_PATH, "util/buildscripts")
   chdir build_path do
-    system("./build.sh action=release profile=rails")
+    system("./build.sh action=clean,release profile=rails")
   end
 end
 
@@ -50,5 +50,10 @@ task :package => [:environment, :ensure_dist_manifest] do
   FileUtils::move(File.join(DIST_PATH, pkg_file), PKG_PATH)
 end
 
-task :release => [:build_dojox_rails, :copy_release_files, :package]
+task :clean => [:environment] do
+  system("rm -rf #{DIST_PATH}/*")
+  system("rm -rf #{PKG_PATH}/*")
+end
+
+task :release => [:clean, :build_dojox_rails, :copy_release_files, :package]
 task :default => [:release]
