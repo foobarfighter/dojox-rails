@@ -1,6 +1,6 @@
 = dojox-rails
 
-* http://github.com/#{github_username}/#{project_name}
+* http://github.com/foobarfighter/dojox-rails
 
 == DESCRIPTION:
 
