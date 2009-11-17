@@ -1,0 +1,4 @@
+dojo/dojo.js
+dojo/dojo.js.uncompressed.js
+dojox/rails.js
+dojox/rails.js.uncompressed.js
