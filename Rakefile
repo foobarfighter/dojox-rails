@@ -43,11 +43,12 @@ task :ensure_dist_manifest => [:environment] do
 end
 
 task :package => [:environment, :ensure_dist_manifest] do
-  pkg_file = "dojox-rails.tgz"
+  pkg_file = "dojox-rails.tar"
   chdir DIST_PATH do
-    system("tar -czvf #{pkg_file} *")
+    system("tar -cvf #{pkg_file} *")
+    system("gzip #{pkg_file}")
   end
-  FileUtils::move(File.join(DIST_PATH, pkg_file), PKG_PATH)
+  FileUtils::move(File.join(DIST_PATH, pkg_file + ".gz"), PKG_PATH)
 end
 
 task :clean => [:environment] do
